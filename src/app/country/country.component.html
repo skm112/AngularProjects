@@ -1,0 +1,23 @@
+
+<h1>Add Country</h1><br>
+<input type="text" [(ngModel)]="countryObj.name" placeholder="Country Name">
+<br>
+<br>
+<input type="button" (click)="saveUpdate()" value="Save">&nbsp;
+<input type="button" (click)="cancel()" value="Cancel">
+<br>
+<table>
+  <tr>
+  <th>Name</th>
+  <th>States</th>
+  <th>Action</th>
+  </tr>
+  <tr *ngFor="let obj of arrCountry">
+    <td>{{obj.name}}</td>
+    <td><a routerLink="/detail/{{obj.id}}/{{obj.name}}">States</a></td>
+    <td>
+      <a (click)="edit(obj)">Edit</a>|
+      <a (click)="delete(obj)">Delete</a>
+    </td>
+  </tr>
+</table>
