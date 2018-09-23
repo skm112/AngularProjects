@@ -25,12 +25,10 @@ export class GethttpserviceComponent implements OnInit {
     });
   }
 
-  saveData(obj:any){
+  editData(obj:any){
     console.log(obj);
-    this.dbservice.savedata(obj).subscribe(obj=>{
-      console.log(obj); 
-    
-    });
+   this.id=obj.id;
+   this.name=obj.name;
   }
   saveData1() {
    
@@ -38,13 +36,20 @@ export class GethttpserviceComponent implements OnInit {
     this.dbservice.savedata(obj).subscribe(obj => {
       console.log(obj);
       this.getdata();
+      this.cancel();
     });
   }
-  updateData(obj:any){
+  cancel(){
+    this.id = null;
+    this.name = "";
+  }
+  updateData(){
+    let obj = { id: this.id, name: this.name };
     this.dbservice.updatedata(obj).subscribe(obj=>{
       console.log(obj);
-      
+      this.getdata();
     })
+    this.cancel();
   }
   deleteData(obj:any){
     console.log(obj);
@@ -52,6 +57,7 @@ export class GethttpserviceComponent implements OnInit {
       console.log(obj);
       this.getdata();
     })
+    this.cancel();
   }
 
   ngOnInit() {
