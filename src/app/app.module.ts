@@ -1,3 +1,4 @@
+import { CountryDataService } from './service/country-data.service';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
@@ -15,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRouting, HttpClientModule],
 
-  providers: [DataService],
+  providers: [DataService,CountryDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
