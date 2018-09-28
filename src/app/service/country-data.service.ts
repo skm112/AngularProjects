@@ -20,6 +20,16 @@ export class CountryDataService {
       .post("http://localhost:3000/country/save", obj)
       .pipe(map(response => response));
   }
-
-  
+  //---------------------------------------------------
+  updatedata(obj: any): Observable<any> {
+    return this.http
+      .put("http://localhost:3000/country/update/" + obj._id, obj)
+      .pipe(map(response => response));
+  }
+  //---------------------------------------------------
+  deletedata(obj: any): Observable<any> {
+    return this.http
+      .delete("http://localhost:3000/country/delete/" + obj._id, obj)
+      .pipe(map(response => response));
+  }
 }

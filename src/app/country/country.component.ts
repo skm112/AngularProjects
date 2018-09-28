@@ -32,7 +32,7 @@ export class CountryComponent implements OnInit {
     });
   }
 
-  saveUpdate() {
+  save() {
     this.countrydbservice
       .savedata({ name: this.countryObj.name })
       .subscribe(obj => {
@@ -40,12 +40,29 @@ export class CountryComponent implements OnInit {
         this.getData();
       });
   }
-  edit(obj) {
-    this.countryObj = obj.copy();
+  edit(obj: Country) {
+    console.log(obj);
+
+    this.countryObj.name = obj.name;
+    this.countryObj._id = obj._id;
     console.log(this.arrCountry);
   }
-  delete(obj){
+  Update() {
+    console.log(this.countryObj);
+    this.countrydbservice.updatedata(this.countryObj).subscribe(obj => {
+      console.log(obj);
+      this.getData();
+    });
+  }
+  delete(obj) {
+    console.log('delete obj');
+    console.log(obj);
     
+    
+    this.countrydbservice.deletedata(obj).subscribe(obj => {
+      console.log(obj);
+      this.getData();
+    })
   }
 
   ngOnInit() {}
