@@ -3,6 +3,7 @@ export class Country {
     name:string;
     id:number=0;
     _id: string;
+    
 
     copy():Country{
         let obj=new Country();

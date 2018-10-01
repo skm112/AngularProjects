@@ -4,8 +4,9 @@
 <br>
 <br>
 <input type="button" (click)="save()" value="Save">&nbsp;
-<input type="button" (click)="cancel()" value="Cancel">
-<input type="button" (click)="Update()" value="Update">
+<input type="button" (click)="cancel()" value="Cancel">&nbsp;
+<input type="button" (click)="Update()" value="Update">&nbsp;
+<input type="button" (click)="search()" value="Search">&nbsp;
 <br>
 <table>
   <tr>
@@ -21,4 +22,9 @@
       <a (click)="delete(obj)">Delete</a>
     </td>
   </tr>
+  
 </table>
+asdfasdfads {{arrPage}}
+<p><a (click)="getData(pageno,pagesize)" *ngFor="let pageno of arrPage">
+  {{pageno}}
+</a></p>

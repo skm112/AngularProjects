@@ -32,4 +32,11 @@ export class CountryDataService {
       .delete("http://localhost:3000/country/delete/" + obj._id, obj)
       .pipe(map(response => response));
   }
+  //--------------------------------------------------------
+  pagedata(obj: any): Observable<any> {
+    return this.http
+      .post("http://localhost:3000/country/pageno/list", obj)
+      .pipe(map(response => response));
+      
+  }
 }
