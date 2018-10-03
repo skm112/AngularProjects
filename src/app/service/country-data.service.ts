@@ -34,6 +34,7 @@ export class CountryDataService {
   }
   //--------------------------------------------------------
   pagedata(obj: any): Observable<any> {
+    console.log(obj);
     return this.http
       .post("http://localhost:3000/country/pageno/list", obj)
       .pipe(map(response => response));

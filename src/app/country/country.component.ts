@@ -17,6 +17,7 @@ export class CountryComponent implements OnInit {
   
  pageno:number=1;
  pagesize:number=5;
+ pagesearch:string="";
 
   constructor(
     private countrydbservice: CountryDataService,
@@ -25,14 +26,15 @@ export class CountryComponent implements OnInit {
     this.countryObj = new Country();
     this.arrCountry = [];
     this.pagearray();
-    this.getData(this.pageno,this.pagesize);
+    this.getData(this.pagesearch,this.pageno,this.pagesize);
   }
 
-  getData(_pno,_psize) {
+  getData(_search,_pno,_psize) {
     console.log(_pno + '   ' + _psize);
-    let obj={limit:_psize,pageno:_pno}
+    let obj={search:_search,limit:_psize,pageno:_pno}
     this.countrydbservice.pagedata(obj).subscribe(data => {
       
+      console.log(data);
       this.arrCountry = data;
       // this.arrCountry = data;
     });
@@ -43,7 +45,7 @@ export class CountryComponent implements OnInit {
       .savedata({ name: this.countryObj.name })
       .subscribe(obj => {
         
-        this.getData(this.pageno, this.pagesize);
+        this.getData(this.pagesearch,this.pageno, this.pagesize);
       });
   }
   pagearray() {
@@ -63,10 +65,19 @@ export class CountryComponent implements OnInit {
 
     });
 
-    
     // this.countrydbservice.(this.arrPage).subscribe(obj => {
     //   console.log(obj);
     // });
+  }
+  search() {
+    
+    let obj = { search: this.pagesearch, limit: this.pagesize, pageno: this.pageno }
+    this.countrydbservice.pagedata(obj).subscribe(data => {
+
+      console.log(data);
+      this.arrCountry = data;
+      // this.arrCountry = data;
+    });
   }
 
   edit(obj: Country) {
@@ -80,7 +91,7 @@ export class CountryComponent implements OnInit {
     console.log(this.countryObj);
     this.countrydbservice.updatedata(this.countryObj).subscribe(obj => {
       console.log(obj);
-      this.getData(this.pageno, this.pagesize);
+      this.getData(this.pagesearch,this.pageno, this.pagesize);
     });
   }
   delete(obj) {
@@ -89,49 +100,9 @@ export class CountryComponent implements OnInit {
 
     this.countrydbservice.deletedata(obj).subscribe(obj => {
       console.log(obj);
-      this.getData(this.pageno, this.pagesize);
+      this.getData(this.pagesearch,this.pageno, this.pagesize);
     });
   }
 
   ngOnInit() {}
 }
-// countryObj: Country;
-// arrCountry: Country[];
-// id: number = 0;
-
-// constructor(private router: Router) {
-//   this.countryObj = new Country();
-//   this.arrCountry = [];
-// }
-// saveUpdate() {
-//   if (this.countryObj.id > 0) {
-//     for (let i = 0; i < this.arrCountry.length; i++) {
-//       if (this.arrCountry[i].id == this.countryObj.id) {
-//         this.arrCountry[i] = this.countryObj.copy();
-//         console.log(this.arrCountry);
-//       }
-//     }
-//   } else {
-//     console.log(this.countryObj);
-//     this.countryObj.id = ++this.id;
-//     console.log(this.arrCountry);
-//     this.arrCountry.push(this.countryObj.copy());
-//   }
-//   this.cancel();
-// }
-// edit(obj) {
-//   this.countryObj = obj.copy();
-//   console.log(this.arrCountry);
-// }
-
-// delete(val) {
-//   for (let i = 0; i < this.arrCountry.length; i++) {
-//     if (this.arrCountry[i] == val) {
-//       this.arrCountry.splice(i, 1);
-//     }
-//   }
-//   this.cancel();
-// }
-// cancel() {
-//   this.countryObj.clear();
-// }
