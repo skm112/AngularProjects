@@ -22,7 +22,6 @@ const appRoutes: Routes = [
   },
   { path: "country", component: CountryComponent },
   { path: "detail/:id/:name", component: StatesComponent },
-  { path: "states", component: StatesComponent },
   { path: "fruits", component: FruitsComponent },
   { path: "animal", component: AnimalComponent },
   { path: "cuser", component: ClassUserComponent },

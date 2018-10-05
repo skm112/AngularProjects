@@ -26,12 +26,42 @@ export class CountryDataService {
       .put("http://localhost:3000/country/update/" + obj._id, obj)
       .pipe(map(response => response));
   }
+//---state update---------------------
+  updateState(obj: any): Observable<any> {
+    return this.http
+      .put("http://localhost:3000/country/state/update/" + obj._id, obj)
+      .pipe(map(response => response));
+  }
+  //---state save------------------------------------------------
+  updateStateData(id:string,obj: string): Observable<any> {
+    return this.http
+      .put("http://localhost:3000/country/update/state/" + id, {name:obj})
+      .pipe(map(response => response));
+  }
+
+
   //---------------------------------------------------
   deletedata(obj: any): Observable<any> {
     return this.http
       .delete("http://localhost:3000/country/delete/" + obj._id, obj)
       .pipe(map(response => response));
   }
+  //--state delete------------------------------------------------------
+  deleteStateData(obj: any): Observable<any> {
+    return this.http
+      .delete(
+      "http://localhost:3000/country/state/delete/"+obj.cid+"/"+obj.sid       
+      )
+      .pipe(map(response => response));
+  }
+  //getdata states------------------------------------
+  getStateData(obj:any): Observable<any> {
+    console.log("service");
+    return this.http
+      .get("http://localhost:3000/country/state/"+obj)
+      .pipe(map(response => response));
+  }
+
   //--------------------------------------------------------
   pagedata(obj: any): Observable<any> {
     console.log(obj);

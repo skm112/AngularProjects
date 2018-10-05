@@ -19,7 +19,7 @@
   </tr>
   <tr *ngFor="let obj of arrCountry">
     <td>{{obj.name}}</td>
-    <td><a routerLink="/detail/{{obj.id}}/{{obj.name}}">States</a></td>
+    <td><a routerLink="/detail/{{obj._id}}/{{obj.name}}">States</a></td>
     <td>
       <a (click)="edit(obj)">Edit</a>|
       <a (click)="delete(obj)">Delete</a>
@@ -27,6 +27,6 @@
   </tr>
   
 </table>
-<p><a (click)="getData(pageno,pagesize)" *ngFor="let pageno of arrPage">
+<p><a (click)="getData(pagesearch,pageno,pagesize)" *ngFor="let pageno of arrPage">
   {{pageno}}
 </a></p>

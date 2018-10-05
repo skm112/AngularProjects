@@ -30,12 +30,18 @@ export class CountryComponent implements OnInit {
   }
 
   getData(_search,_pno,_psize) {
-    console.log(_pno + '   ' + _psize);
-    let obj={search:_search,limit:_psize,pageno:_pno}
+    
+    let obj = { search: _search, pageno: _pno, limit: _psize}
+    console.log("obj");
+    console.log(obj);
+    
+    
     this.countrydbservice.pagedata(obj).subscribe(data => {
       
       console.log(data);
       this.arrCountry = data;
+     
+      
       // this.arrCountry = data;
     });
   }
