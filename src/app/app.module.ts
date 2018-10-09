@@ -10,13 +10,15 @@ import { AppRouting, routingComponents } from "./app.routing";
 
 import { DataService } from "./service/data.service";
 import { HttpClientModule } from '@angular/common/http';
+import { ProductComponent } from './product/product.component';
+import { ProductService } from './service/product.service';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, routingComponents, ],
+  declarations: [AppComponent, HeaderComponent, routingComponents,  ],
 
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRouting, HttpClientModule],
 
-  providers: [DataService,CountryDataService],
+  providers: [DataService, CountryDataService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

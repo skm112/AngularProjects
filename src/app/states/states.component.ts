@@ -12,6 +12,7 @@ export class StatesComponent implements OnInit {
   public country: string;
   name: string;
   arrState:any[]=[];
+  stateId:string="";
   
 
   constructor(
@@ -39,16 +40,17 @@ export class StatesComponent implements OnInit {
     console.log(obj);
     console.log(this.arrState);  
      this.name=obj.name;
-    this.id=obj._id;
+    this.stateId=obj._id;
    
   }
 
   Update(){
     console.log(this.name);
     console.log(this.id);
-    
-      this.countrydbservice.updateState({ id: this.id, name: this.name }).subscribe(obj => {
-      console.log(obj);
+    let obj={id:this.stateId,name:this.name}
+    console.log(obj);
+      this.countrydbservice.updateState(this.id, obj).subscribe(data => {
+        console.log(data);
       this.getdata();
     });
     
@@ -60,6 +62,7 @@ export class StatesComponent implements OnInit {
     let aa = { cid: this.id,sid:obj._id};
     this.countrydbservice.deleteStateData(aa).subscribe(obj => {
       console.log(obj);
+      this.getdata();
     });
     
   }

@@ -12,6 +12,7 @@ import { FormPracticeComponent } from "./form-practice/form-practice.component";
 import { StatesComponent } from "./states/states.component";
 import { CountryComponent } from "./country/country.component";
 import { GethttpserviceComponent } from "./gethttpservice/gethttpservice.component";
+import { ProductComponent } from "./product/product.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: "detail/:id/:name", component: StatesComponent },
   { path: "fruits", component: FruitsComponent },
   { path: "animal", component: AnimalComponent },
+  { path: "product", component: ProductComponent },
   { path: "cuser", component: ClassUserComponent },
   { path: "fatarrow", component: FatArrowComponent },
   { path: "form", component: FormPracticeComponent },
@@ -50,5 +52,6 @@ export const routingComponents = [
   FormUserComponent,
   CountryComponent,
   StatesComponent,
-  GethttpserviceComponent
+  GethttpserviceComponent,
+  ProductComponent
 ];

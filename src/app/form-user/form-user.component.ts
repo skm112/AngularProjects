@@ -10,9 +10,11 @@ import { User1 } from '../common/model/user1';
 export class FormUserComponent implements OnInit {
   userObj: User1;
   arrUser: User1[];
+
   constructor(private builder: FormBuilder) {
     this.userObj = new User1();
     this.arrUser = [];
+    console.log(this.arrUser);
   }
   userName = new FormControl(null, [
     Validators.required,
@@ -40,6 +42,7 @@ export class FormUserComponent implements OnInit {
     useremail: this.userEmail
   });
   login() {
+    console.log('login');
     console.log(this.loginForm.value);
     this.arrUser.push(this.loginForm.value);
     console.log(this.arrUser);

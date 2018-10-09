@@ -27,9 +27,9 @@ export class CountryDataService {
       .pipe(map(response => response));
   }
 //---state update---------------------
-  updateState(obj: any): Observable<any> {
+  updateState(cid,obj: any): Observable<any> {
     return this.http
-      .put("http://localhost:3000/country/state/update/" + obj._id, obj)
+      .put("http://localhost:3000/country/update/state1/" + cid, obj)
       .pipe(map(response => response));
   }
   //---state save------------------------------------------------

@@ -31,6 +31,7 @@ export class CountryComponent implements OnInit {
 
   getData(_search,_pno,_psize) {
     
+    
     let obj = { search: _search, pageno: _pno, limit: _psize}
     console.log("obj");
     console.log(obj);
