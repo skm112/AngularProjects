@@ -12,6 +12,7 @@ import { DataService } from "./service/data.service";
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from './service/product.service';
+import { PipesComponent } from './pipes/pipes.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, routingComponents,  ],

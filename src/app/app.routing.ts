@@ -1,3 +1,4 @@
+import { PipesComponent } from './pipes/pipes.component';
 import { FormUserComponent } from "./form-user/form-user.component";
 import { FatArrowComponent } from "./fat-arrow/fat-arrow.component";
 import { NgModule } from "@angular/core";
@@ -16,6 +17,7 @@ import { ProductComponent } from "./product/product.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
+  {path:"pipes",component:PipesComponent},
   {
     path: "user",
     component: UserComponent,
@@ -53,5 +55,6 @@ export const routingComponents = [
   CountryComponent,
   StatesComponent,
   GethttpserviceComponent,
-  ProductComponent
+  ProductComponent,
+  PipesComponent
 ];

@@ -9,11 +9,17 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 })
 export class ProductComponent implements OnInit {
   _file = new File([""], "");
+  arrTable:any[]=[];
+  link:string="";
 
   constructor(
     private ProductService: ProductService,
     private builder: FormBuilder
-  ) {}
+  ) {
+    this.getData();
+  }
+
+
   filename = new FormControl(null);
   name = new FormControl(null);
   price = new FormControl(null);
@@ -31,15 +37,43 @@ export class ProductComponent implements OnInit {
     formData.append("uploads[]", this._file, this._file.name);
     formData.append("name", this.uploadForm.value.name);
     formData.append("price", this.uploadForm.value.price);
-    console.log(formData);
-
     this.ProductService
       .savedata(formData)
       .subscribe(obj => {
-  console.log(obj);
-  
+        console.log("obj");
+        
+    console.log(obj);
+    this.getData();
+    this.uploadForm.reset();
+        // this.uploadForm.patchValue(obj)
       });
     
+  }
+
+  getData() {
+    this.ProductService.getdata().subscribe(data => {
+      console.log(data);
+      this.arrTable = data;
+console.log("arrtable");
+console.log(this.arrTable);
+
+    });
+  }
+
+  delete(obj) {
+    console.log("delete obj");
+    console.log(obj);
+
+    this.ProductService.deletedata(obj).subscribe(obj => {
+      console.log(obj);
+      
+      this.getData();
+    });
+  }
+
+  edit(obj){
+    this.uploadForm.patchValue(obj);
+    this.link=obj.pic;
   }
   ngOnInit() {}
 }
