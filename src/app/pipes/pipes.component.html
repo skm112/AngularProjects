@@ -34,4 +34,11 @@
 <p>Currency => {{money|percent}}</p><br>
 <p>{{a|percent}}</p><br>
 <p>{{b|percent:'4.3-5'}}</p><br>
-<p>{{name|slice:4}}</p>
+<p>{{name|slice:4}}</p><br>
+<p>{{name|limitTo:7}}</p><br>
+<table>
+    <tr *ngFor="let hero of ('assets/db.json'|fetch)">
+        <td>{{hero.id}}</td>
+        <td>{{hero.name}}</td>
+    </tr>
+</table>

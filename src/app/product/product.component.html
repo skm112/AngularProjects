@@ -10,7 +10,7 @@
             </form>
         </td>
         <td>
-            <div><img src={{link}}></div>
+            <div ><img height="50px" width="50px" src="{{url}}{{link}}"></div>
         </td>
     </tr>
 </table>
@@ -22,7 +22,7 @@
         <th>Action</th>
     </tr>
     <tr *ngFor="let obj of arrTable">
-        <td><img src="{{obj.pic}}"></td>
+        <td><img height="50px" width="50px" src="{{url}}{{obj.pic}}"></td>
         <td>{{obj.name}}</td>
         <td>{{obj.price|currency:'INR'}}</td>
         <td><a (click)="edit(obj)" style="color:blue">Edit</a>|<a (click)="delete(obj)" style="color:red">Delete</a></td>

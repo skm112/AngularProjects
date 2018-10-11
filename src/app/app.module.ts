@@ -1,3 +1,4 @@
+import { MyHighlighter, MyIf } from "./../assets/mydirectives";
 import { CountryDataService } from './service/country-data.service';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -10,14 +11,13 @@ import { AppRouting, routingComponents } from "./app.routing";
 
 import { DataService } from "./service/data.service";
 import { HttpClientModule } from '@angular/common/http';
-import { ProductComponent } from './product/product.component';
 import { ProductService } from './service/product.service';
-import { PipesComponent } from './pipes/pipes.component';
+import { TruncatePipe, FetchPipe } from './pipes/truncate.pipe';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, routingComponents,  ],
+  declarations: [AppComponent, HeaderComponent, routingComponents, TruncatePipe, FetchPipe ,MyHighlighter,MyIf ],
 
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRouting, HttpClientModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRouting, HttpClientModule, ],
 
   providers: [DataService, CountryDataService, ProductService],
   bootstrap: [AppComponent]

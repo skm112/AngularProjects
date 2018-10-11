@@ -9,9 +9,10 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 })
 export class ProductComponent implements OnInit {
   _file = new File([""], "");
-  arrTable:any[]=[];
-  link:string="";
-
+  arrTable: any[] = [];
+  link: string = "";
+  url: string = "http://localhost:3000/";
+  arrEdit: any[] = [];
   constructor(
     private ProductService: ProductService,
     private builder: FormBuilder
@@ -19,14 +20,15 @@ export class ProductComponent implements OnInit {
     this.getData();
   }
 
-
   filename = new FormControl(null);
   name = new FormControl(null);
   price = new FormControl(null);
   uploadForm: FormGroup = this.builder.group({
     filename: this.filename,
-    name:this.name,
-    price:this.price
+    name: this.name,
+    price: this.price,
+    _id: new FormControl(null),
+    pic: new FormControl(null)
   });
   fileChange(event) {
     this._file = event.target.files[0];
@@ -37,26 +39,38 @@ export class ProductComponent implements OnInit {
     formData.append("uploads[]", this._file, this._file.name);
     formData.append("name", this.uploadForm.value.name);
     formData.append("price", this.uploadForm.value.price);
-    this.ProductService
-      .savedata(formData)
-      .subscribe(obj => {
+    formData.append("pic", this.uploadForm.value.pic);
+    console.log("formData");
+    console.log(formData);
+    let id = this.uploadForm.value._id;
+    if (id == null) {
+      console.log("Save");
+
+      this.ProductService.savedata(formData).subscribe(obj => {
         console.log("obj");
-        
-    console.log(obj);
-    this.getData();
-    this.uploadForm.reset();
-        // this.uploadForm.patchValue(obj)
+
+        console.log(obj);
+        this.getData();
+        this.uploadForm.reset();
       });
-    
+    } else {
+      console.log("update");
+      this.ProductService.updatedata(id, formData).subscribe(obj => {
+        console.log(obj);
+        this.getData();
+        this.uploadForm.reset();
+
+        
+      });
+    }
   }
 
   getData() {
     this.ProductService.getdata().subscribe(data => {
       console.log(data);
       this.arrTable = data;
-console.log("arrtable");
-console.log(this.arrTable);
-
+      console.log("arrtable");
+      console.log(this.arrTable);
     });
   }
 
@@ -66,14 +80,15 @@ console.log(this.arrTable);
 
     this.ProductService.deletedata(obj).subscribe(obj => {
       console.log(obj);
-      
       this.getData();
     });
+    
+    this.link = "";
   }
 
-  edit(obj){
+  edit(obj) {
     this.uploadForm.patchValue(obj);
-    this.link=obj.pic;
+    this.link = obj.pic;
   }
   ngOnInit() {}
 }

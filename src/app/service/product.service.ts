@@ -31,4 +31,11 @@ export class ProductService {
       )
       .pipe(map(response => response));
   }
+
+  //@updateData
+  updatedata(id,obj: any): Observable<any> {
+    return this.http
+      .put("http://localhost:3000/product/update/" + id, obj)
+      .pipe(map(response => response));
+  }
 }
